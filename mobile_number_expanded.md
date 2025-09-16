@@ -1182,6 +1182,197 @@ This file lists every found occurrence of `mobile_number` in the workspace with 
 
 </details>
 
+- [ ] c:\laragon\www\msis\msisbudgetting\app\Http\Controllers\Api\V1\Admin\TReprogrammingApiController.php:1118 (query) — Type: Raw SQL
+<details>
+<summary>Show context</summary>
+
+```php
+				$cc = '';
+
+				$user = DB::select(DB::raw("SELECT user_email, user_id, user_name, mobile_number, id FROM p_user WHERE (active=1 OR active IS NULL) AND status LIKE '%REP:" . $user_status . "%' $sqlcc"));
+
+				if($user == null){
+					$user = DB::select(DB::raw("SELECT user_email, user_id, user_name, mobile_number, id FROM p_user WHERE (active=1 OR active IS NULL) AND status LIKE '%REP:" . $user_status . "%' and cost_center_id LIKE '%$tProgram->cost_center_id%'"));
+				}
+
+				if($user == null){
+					$user = DB::select(DB::raw("SELECT user_email, user_id, user_name, mobile_number, id FROM p_user WHERE status LIKE '%REP:" . $user_status . "%' and cost_center_id LIKE '%$tProgram->cost_center_id%'"));
+				}
+
+				if (count($user) > 0) {
+					$lanjut = false;
+
+					for($i = 0; $i < count($user); $i++){
+
+						$user_value .= $user[$i]->user_id;
+						$name_value .= $user[$i]->user_name;
+						$phone_value .= $user[$i]->mobile_number;
+```
+
+</details>
+
+- [ ] c:\laragon\www\msis\msisbudgetting\app\Http\Controllers\Api\V1\Admin\TReprogrammingApiController.php:1652 (query) — Type: Raw SQL
+<details>
+<summary>Show context</summary>
+
+```php
+			//cari user yang sesuai next status
+			$user = DB::select(DB::raw("SELECT user_email, user_id, user_name, id, mobile_number FROM p_user WHERE active=1 AND user_email LIKE '%$domainFilter'\n            AND status LIKE '%REP:" . $next_status . "%' $sqlcc"));
+			if (count($user) > 0) {
+				$lanjut = false;
+```
+
+</details>
+
+- [ ] c:\laragon\www\msis\msisbudgetting\app\Http\Controllers\Api\V1\Admin\TReprogrammingApiController.php:1712 (read) — Type: Eloquent
+<details>
+<summary>Show context</summary>
+
+```php
+		$to = $userObj->user_email;
+		$from = auth()->user()->user_id;
+
+		$arr_phone = [$userObj->mobile_number];
+		$arr_names = [$userObj->user_name];
+```
+
+</details>
+
+- [ ] c:\laragon\www\msis\msisbudgetting\app\Http\Controllers\Api\V1\Admin\TReprogrammingApiController.php:2126 (query) — Type: Raw SQL
+<details>
+<summary>Show context</summary>
+
+```php
+					$cc = '';
+					$user = DB::select(DB::raw("SELECT user_email, user_id, user_name, mobile_number, id FROM p_user WHERE active = 1 AND status LIKE '%REP:" . $user_status . "%' $sqlcc"));
+
+					if($user == null){
+						$user = DB::select(DB::raw("SELECT user_email, user_id, user_name, mobile_number, id FROM p_user WHERE active = 1 AND status LIKE '%REP:" . $user_status . "%' and cost_center_id LIKE '%$tProgram->cost_center_id%'"));
+					}
+```
+
+</details>
+
+- [ ] c:\laragon\www\msis\msisbudgetting\app\Http\Controllers\Api\V1\Admin\TReprogrammingApiController.php:2604 (query) — Type: Raw SQL
+<details>
+<summary>Show context</summary>
+
+```php
+					if($reprogram->sla_status_eskalasi == 1){
+						$user = DB::select(DB::raw("SELECT user_email, user_id, user_name, id, mobile_number FROM p_user WHERE user_id = '". $reprogram->boss_user_id ."'"));
+
+						if($user != null){
+							array_push($boss_list_id, $user[0]->user_id);
+							array_push($boss_list_phone, $user[0]->mobile_number);
+							array_push($boss_list_name, $user[0]->user_name);
+						}
+```
+
+</details>
+
+- [ ] c:\laragon\www\msis\msiscashmanagement\app\Http\Controllers\Api\V1\Admin\TCashoutApiController.php:3888 (query) — Type: Raw SQL
+<details>
+<summary>Show context</summary>
+
+```php
+		// Jika atasan baca boss_user_id, lainnya baca company
+		switch ($arr_send_to_status[2]) {
+			case '0':
+				// user
+				$sql = "SELECT user_id, user_name, user_email, id, mobile_number FROM p_user WHERE active = 1 AND user_id = ?";
+				$row = $this->to_array($sql, [$request_by]);
+				list($notify[0]['user_id'], $notify[0]['user_name'], $notify[0]['user_email']) = $this->valueOrArrayOfEmptyString($row[0]);
+				list($arr_user_to[0], $arr_name_to[0], $arr_mail_to[0], $arr_user_id_to[0], $arr_phone_to[0]) = $this->valueOrArrayOfEmptyString($row[0]);
+				break;
+```
+
+</details>
+
+- [ ] c:\laragon\www\msis\msiscashmanagement\app\Http\Controllers\Api\V1\Admin\TCashoutApiController.php:3896 (query) — Type: Raw SQL
+<details>
+<summary>Show context</summary>
+
+```php
+			case '1':
+				// boss_user_id
+				$sql = "SELECT user_id, user_name, user_email, id, mobile_number FROM p_user WHERE active = 1 AND user_id = (SELECT boss_user_id FROM p_user WHERE active = 1 AND user_id = ?)";
+				$row = $this->to_array($sql, [$request_by]);
+				list($notify[0]['user_id'], $notify[0]['user_name'], $notify[0]['user_email']) = $this->valueOrArrayOfEmptyString($row[0]);
+				list($arr_user_to[0], $arr_name_to[0], $arr_mail_to[0], $arr_user_id_to[0], $arr_phone_to[0]) = $this->valueOrArrayOfEmptyString($row[0]);
+				break;
+```
+
+</details>
+
+- [ ] c:\laragon\www\msis\msiscashmanagement\app\Http\Controllers\Api\V1\Admin\TCashoutApiController.php:5322 (query) — Type: Raw SQL
+<details>
+<summary>Show context</summary>
+
+```php
+				$user = DB::select(DB::raw("SELECT user_email, user_id, user_name, id, mobile_number FROM p_user WHERE user_id = '". $item->next_approver_id ."'"));
+				if($user != null){
+					array_push($user_list_id, $user[0]->user_id);
+					array_push($user_list_phone, $user[0]->mobile_number);
+					array_push($user_list_name, $user[0]->user_name);
+				}
+```
+
+</details>
+
+- [ ] c:\laragon\www\msis\msisbudgetting\app\Http\Controllers\Api\V1\Admin\MobileController.php:300 (query) — Type: Raw SQL
+<details>
+<summary>Show context</summary>
+
+```php
+				$users = DB::select(DB::raw("SELECT user_email, mobile_number, user_name, id FROM p_user WHERE active = 1 AND status LIKE '%REP:" . $status_ . "%' $sqlcc"));
+
+				foreach ($users as $index => $data)
+				{
+					if($index == 0)
+					{
+						$next_approvers .= $data->user_email;
+						$phone_value .= $data->mobile_number;
+					}
+```
+
+</details>
+
+- [ ] c:\laragon\www\msis\msisbudgetting\app\Http\Controllers\Api\V1\Admin\MobileController.php:560 (query) — Type: Raw SQL
+<details>
+<summary>Show context</summary>
+
+```php
+				$users = DB::select(DB::raw("SELECT user_email, mobile_number, user_name, id FROM p_user WHERE active = 1 AND status LIKE '%REP:" . $status_id . "%' $sqlcc"));
+
+				foreach ($users as $index => $data)
+				{
+					if($index == 0)
+					{
+						$next_approvers.= $data->user_email;
+						$phone_value .= $data->mobile_number;
+					}
+```
+
+</details>
+
+- [ ] c:\laragon\www\msis\msisprocurement\app\Http\Controllers\Api\V1\Admin\TPrApiController.php:1840 (query) — Type: Raw/ORM mix
+<details>
+<summary>Show context</summary>
+
+```php
+					case '0':
+						// user
+						$user = User::select('user_id', 'user_name', 'user_email', 'mobile_number', 'id')->where('active', 1)->where('user_id', $tPrDet->requester)->get();
+						break;
+					case '1':
+						// boss_user_id
+						$user = DB::select(DB::raw("SELECT user_id, user_name, user_email, mobile_number, id FROM p_user WHERE active = 1 AND user_id = (SELECT boss_user_id FROM p_user WHERE active = 1 AND user_id = '" . $tPrDet->requester . "')"));
+						break;
+```
+
+</details>
+
+
 - [ ] c:\laragon\www\msis\msiscashmanagement\app\Http\Controllers\Api\V1\Admin\MobileController.php:862 (query) — Type: Raw SQL
 <details>
 <summary>Show context</summary>
