@@ -401,15 +401,6 @@ This file lists every found occurrence of `mobile_number` in the workspace with 
 
 167        $details = [
 ```
-
-</details>
-
-164            $user_phones[] = $row->mobile_number;
-165        }
-166
-167        $details = [
-```
-
 </details>
 
 - [ ] c:\laragon\www\msis\msisbilling\app\Http\Controllers\Api\V1\Admin\TBillingIoController.php:256 (query) — Type: Raw SQL
